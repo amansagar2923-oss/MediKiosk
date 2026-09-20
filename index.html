@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediKiosk | Multilingual Clinical History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">MediKiosk <span id="brandSub">Clinical History Platform</span></div>
+  <div class="header-actions">
+    <select id="language" class="lang" onchange="setLanguage(this.value)">
+      <option value="en">English</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option>
+      <option value="mr">मराठी</option><option value="te">తెలుగు</option><option value="ta">தமிழ்</option>
+      <option value="gu">ગુજરાતી</option><option value="kn">ಕನ್ನಡ</option><option value="ml">മലയാളം</option>
+      <option value="pa">ਪੰਜਾਬੀ</option>
+    </select>
+    <button class="btn secondary hidden" onclick="logout()" id="logoutBtn">Logout</button>
+  </div>
+</header>
+
+<section id="loginPage">
+  <div class="form">
+    <h1>MediKiosk</h1>
+    <p class="muted" id="loginIntro">Secure clinical history and consultation intake.</p>
+    <label id="roleLabel">Role</label>
+    <select id="role"><option value="patient">Patient</option><option value="doctor">Doctor</option></select>
+    <label id="idLabel">User ID</label><input id="uid" placeholder="Enter user ID">
+    <label id="pinLabel">PIN</label><input id="pin" type="password" placeholder="Enter PIN">
+    <button class="btn primary" style="width:100%;margin-top:18px" onclick="login()" id="loginBtn">Sign in</button>
+    <p class="footer-note" id="loginFooter">Prototype authentication. Production deployment should use secure server-side authentication, role-based access and ABDM/ABHA consent flows.</p>
+  </div>
+</section>
+
+<section id="patientApp" class="app hidden">
+<aside>
+  <div class="nav-title">Patient</div>
+  <div class="nav">
+    <button class="active" onclick="patientPage('home',this)" data-i="home">Home</button>
+    <button onclick="patientPage('general',this)" data-i="general">General Consultation</button>
+    <button onclick="patientPage('ayush',this)" data-i="ayush">AYUSH Assessment</button>
+    <button onclick="patientPage('reports',this)" data-i="reports">Medical Reports</button>
+    <button onclick="patientPage('summary',this)" data-i="summary">Consultation Summary</button>
+  </div>
+</aside>
+<main id="patientMain"></main>
+</section>
+
+<section id="doctorApp" class="app hidden">
+<aside>
+  <div class="nav-title">Doctor</div>
+  <div class="nav">
+    <button class="active" onclick="doctorPage('home',this)">Home / Queue</button>
+    <button onclick="doctorPage('appointments',this)">Appointments</button>
+    <button onclick="doctorPage('patients',this)">Patients</button>
+    <button onclick="doctorPage('consultations',this)">Consultations</button>
+    <button onclick="doctorPage('reports',this)">Reports</button>
+  </div>
+</aside>
+<main id="doctorMain"></main>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
